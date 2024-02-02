@@ -1,0 +1,28 @@
+<div class="div-formulario att">
+    <form>
+        <h2>Cadastro</h2>
+        <div>
+            <label>Nome:</label>
+            <input [(ngModel)]="pessoa.nome" name="nome" placeholder="nome..."/>
+        </div>
+
+        <div>
+            <label>Idade:</label>
+            <input [(ngModel)]="pessoa.idade" name="idade" placeholder="idade..."/>
+        </div>
+
+        <div>
+            <label>Cargo:</label>
+            <input [(ngModel)]="pessoa.cargo" name="cargo" placeholder="cargo..."/>
+        </div>
+
+        <div>
+            <label>Sexo:</label>
+            <input [(ngModel)]="pessoa.sexo" name="sexo" placeholder="sexo..."/>
+        </div>
+
+        <div>
+            <button (click)="cadastrar()">Enviar</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,43 @@
+.div-formulario{
+    // background-color: pink;
+    height: calc(100vh - 50px);
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    form{
+        background-color: orange;
+        padding: 40px;
+        border-radius: 5px;
+        
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        div{
+            display: flex;
+            flex-direction: column;
+
+            input{
+                padding: 5px;
+                border-radius: 5px;
+                border-style: none;
+            }
+
+            button{
+                padding: 5px;
+                cursor: pointer;
+
+                border-radius: 5px;
+                border-style: none;
+                transition: all ease 0.5s;
+            }
+
+            button:hover{
+                opacity: 0.83;
+            }
+        }
+    }
+}

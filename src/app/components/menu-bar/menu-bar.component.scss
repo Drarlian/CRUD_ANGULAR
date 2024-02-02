@@ -1,0 +1,30 @@
+.side-bar{
+    // background-color: red;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ul{
+        display: flex;
+        gap: 6rem;
+        li{
+            list-style: none;
+            padding: 10px;
+            border-radius: 5px;
+
+            cursor: pointer;
+            transition: all ease 0.5s;
+
+            a{
+                text-decoration: none;
+                color: black;
+            }
+        }
+
+        li:hover{
+            background-color: orange;
+        }
+    }
+    
+}
