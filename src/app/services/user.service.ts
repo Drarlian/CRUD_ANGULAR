@@ -15,10 +15,12 @@ export class UserService {
     const pessoasAtuais = this.pessoas.value;
 
     // ENTENDER AQUI EMBAIXO: SHALLOW COPY E DEEPY COPY
+    // RESPOSTA: A variavel "pessoa" estava causando esse problema, pois o ao alterar ela em qualquer momento, todo lugar onde ela foi usada
+    // também era alterado, fazendo assim a lista sempre ter todas as pessoas cadastradas como a última cadastrada.
 
-    const novaPessoa = JSON.parse(JSON.stringify(pessoa));
+    // const novaPessoa = JSON.parse(JSON.stringify(pessoa));
 
-    const novasPessoas = [...pessoasAtuais, novaPessoa];
+    const novasPessoas = [...pessoasAtuais, {...pessoa}];
 
     // ------------------------------------------------
 
