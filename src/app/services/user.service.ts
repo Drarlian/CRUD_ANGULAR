@@ -6,7 +6,7 @@ import { Pessoa } from 'src/interfaces/Pessoa';
   providedIn: 'root'
 })
 export class UserService {
-  private pessoas = new BehaviorSubject<Pessoa[]>([]);
+  private pessoas = new BehaviorSubject<Pessoa[]>([{nome: 'sim', idade: 'outro', cargo: 'adsfsdf', sexo: '4123'}]);
   pessoaVisivel = this.pessoas.asObservable();
 
   constructor() { }
@@ -29,5 +29,15 @@ export class UserService {
     this.pessoas.subscribe(val => {
       console.log(val);
     });
+
+    console.log('bbbbbbbbbbbbbbbbb')
+
+    this.pessoaVisivel.subscribe(val => console.log(val))
+  }
+
+  async getPessoas(){
+    console.log(this.pessoas.value)
+    console.log('aaaaaaaaaaaaaaaaaaaaaaa')
+    return this.pessoas.value
   }
 }

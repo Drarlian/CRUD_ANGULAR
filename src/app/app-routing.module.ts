@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CrudContentComponent } from './components/crud-content/crud-content.component';
-import { ViewContentComponent } from './components/view-content/view-content.component';
+import { TableViewerComponent } from './components/table-viewer/table-viewer.component';
 
 const routes: Routes = [
   {path: '', component: CrudContentComponent},
-  {path: 'users', component: ViewContentComponent}
+  {path: 'users', component: TableViewerComponent}
 
 ];
 

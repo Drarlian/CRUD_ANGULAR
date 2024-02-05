@@ -19,5 +19,12 @@ export class CrudContentComponent {
 
   cadastrar(){
     this.userService.adicionarPessoa(this.pessoa)
+
+    this.pessoa.nome = '';
+    this.pessoa.idade = '';
+    this.pessoa.cargo = '';
+    this.pessoa.sexo = '';
+
+    console.log(this.userService.getPessoas())
   }
 }

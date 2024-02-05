@@ -1,0 +1,19 @@
+<div class="div-tabela">
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Cargo</th>
+                <th>Sexo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pessoa of pessoas">
+                <td>{{pessoa.nome}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button (click)="exibir()">AAAA</button>
+</div>

@@ -6,21 +6,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { CrudContentComponent } from './components/crud-content/crud-content.component';
-import { ViewContentComponent } from './components/view-content/view-content.component';
+import { UserService } from './services/user.service';
+import { TableViewerComponent } from './components/table-viewer/table-viewer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuBarComponent,
     CrudContentComponent,
-    ViewContentComponent,
+    TableViewerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
