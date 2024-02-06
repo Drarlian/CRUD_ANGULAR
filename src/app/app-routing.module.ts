@@ -5,8 +5,7 @@ import { TableViewerComponent } from './components/table-viewer/table-viewer.com
 
 const routes: Routes = [
   {path: '', component: CrudContentComponent},
-  {path: 'users', component: TableViewerComponent}
-
+  {path: 'users', component: TableViewerComponent},
 ];
 
 @NgModule({

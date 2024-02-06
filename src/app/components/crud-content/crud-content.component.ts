@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Pessoa } from 'src/interfaces/Pessoa';
 
+
 @Component({
   selector: 'app-crud-content',
   templateUrl: './crud-content.component.html',
-  styleUrls: ['./crud-content.component.scss']
+  styleUrls: ['./crud-content.component.scss'],
 })
 export class CrudContentComponent {
   pessoa: Pessoa = {
@@ -24,7 +25,5 @@ export class CrudContentComponent {
     this.pessoa.idade = '';
     this.pessoa.cargo = '';
     this.pessoa.sexo = '';
-
-    console.log(this.userService.getPessoas())
   }
 }

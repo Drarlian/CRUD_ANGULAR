@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/services/user.service';
 import { Pessoa } from 'src/interfaces/Pessoa';
 
@@ -8,20 +9,15 @@ import { Pessoa } from 'src/interfaces/Pessoa';
   styleUrls: ['./table-viewer.component.scss']
 })
 export class TableViewerComponent implements OnInit {
-  pessoas!: Pessoa[];
+  pessoas!: any;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private cookieService: CookieService) {}
 
   ngOnInit() {
-    console.log('ViewContentComponent initialized');
-    console.log(this.userService.pessoaVisivel)
-    this.userService.pessoaVisivel.subscribe((pessoas) => {
-      console.log(pessoas)
-      this.pessoas = pessoas;
-    });
-  }
+    this.pessoas = this.userService.getPessoas();
 
-  exibir(){
-    console.log(this.pessoas)
+    if (this.pessoas == null){
+      this.userService.pessoaVisivel.subscribe((pessoas) => this.pessoas = pessoas);
+    }
   }
 }

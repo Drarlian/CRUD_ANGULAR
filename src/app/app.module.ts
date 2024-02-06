@@ -8,6 +8,7 @@ import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { CrudContentComponent } from './components/crud-content/crud-content.component';
 import { UserService } from './services/user.service';
 import { TableViewerComponent } from './components/table-viewer/table-viewer.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { TableViewerComponent } from './components/table-viewer/table-viewer.com
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [UserService],
+  providers: [UserService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

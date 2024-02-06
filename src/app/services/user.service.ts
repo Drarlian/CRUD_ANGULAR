@@ -1,15 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject } from 'rxjs';
 import { Pessoa } from 'src/interfaces/Pessoa';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-  private pessoas = new BehaviorSubject<Pessoa[]>([{nome: 'sim', idade: 'outro', cargo: 'adsfsdf', sexo: '4123'}]);
+export class UserService{
+  private pessoas = new BehaviorSubject<Pessoa[]>([]);
   pessoaVisivel = this.pessoas.asObservable();
 
-  constructor() { }
+  constructor(private cookieService: CookieService) {
+    // O código aqui dentro só vai ser executado na primeira vez que o serviço for instânciado na aplicação.
+    const pessoasTemp = this.getPessoas()
+
+    if (pessoasTemp != null){
+      this.pessoas.next(pessoasTemp)
+    }
+  }
 
   adicionarPessoa(pessoa: Pessoa){
     const pessoasAtuais = this.pessoas.value;
@@ -26,18 +34,18 @@ export class UserService {
 
     this.pessoas.next(novasPessoas);
 
-    this.pessoas.subscribe(val => {
-      console.log(val);
-    });
+    this.cookieService.set('usuarios', `${JSON.stringify(this.pessoas.value)}`)
 
-    console.log('bbbbbbbbbbbbbbbbb')
-
-    this.pessoaVisivel.subscribe(val => console.log(val))
+    // this.pessoas.subscribe(val => {
+    //   console.log(val);
+    // });
   }
 
-  async getPessoas(){
-    console.log(this.pessoas.value)
-    console.log('aaaaaaaaaaaaaaaaaaaaaaa')
-    return this.pessoas.value
+  getPessoas(): Pessoa[] | null{
+    try{
+      return JSON.parse(this.cookieService.get('usuarios'))
+    } catch{
+      return null
+    }
   }
 }
