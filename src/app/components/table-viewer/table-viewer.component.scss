@@ -1,36 +1,119 @@
 .div-tabela{
-    // background-color: orange;
+    // background-color: red;
     height: calc(100vh - 50px);
-    // flex: 1;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     font-size: larger;
-    
+
     .painel-tabela{
         background-color: orange;
+        box-sizing: border-box;
         
         display: flex;
+        // align-items: center;
+        // justify-content: center;
         flex-direction: column;
-        padding: 15px;
-        gap: 1rem;
-        border-radius: 5px;
 
+        height: 300px;
+        width: 450px;
+        // padding: 15px;
+        // gap: 1rem;
+        border-radius: 10px;
 
-        table{
-            background-color: white;
-            // border: solid;
-    
-            tr{
+        .titulo-tabela{
+            // background-color: pink;
+            box-sizing: border-box;
+
+            display: flex;
+            justify-content: center;
+            align-items: start;
+
+            padding: 15px;
+
+            width: 100%;
+
+            flex: 1;
+        }
+
+        .espaco-tabela{
+            // background-color: white;
+            box-sizing: border-box;
+
+            display: flex;
+            justify-content: center;
+            // align-items: center;
+            // flex-direction: column;
+
+            width: 100%;
+
+            padding: 15px;
+            flex: 2;
+            table{
+                box-sizing: border-box;
+                // background-color: blue;
                 // border: solid;
-    
-                th, td{
-                    border: solid;
-                    padding: 5px;
+
+                // height: auto;
+                display: inline;
+        
+                tr{
+                    // border: solid;
+        
+                    th, td{
+                        border: solid;
+                        padding: 5px;
+
+                        button{
+                            border-style: none;
+                            border-radius: 5px;
+                            padding: 5px;  // Pode dar BO
+                            
+                            cursor: pointer;
+                            transition: all ease 0.5s;
+
+                            &:hover{
+                                opacity: 0.90;
+                            }
+                        }
+                    }
                 }
             }
         }
     }
+    
+    @media (max-width: 500px){
+        .painel-tabela{
+            width: 98vw;
+
+            .titulo-tabela{
+                font-size: large;
+                // padding: 0px;
+            }
+
+            .espaco-tabela{
+                font-size: medium;
+                padding: 0px;
+            }
+        }
+    }
+    
+    @media (max-width: 400px){
+        .painel-tabela{
+            width: 100vw;
+
+            .titulo-tabela{
+                font-size: large;
+                // padding: 0px;
+            }
+
+            .espaco-tabela{
+                font-size: medium;
+                padding: 0px;
+            }
+        }
+    }
+
 }

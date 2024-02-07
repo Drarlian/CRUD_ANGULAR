@@ -1,0 +1,32 @@
+<div [ngClass]="'div-atualizar'" >  
+    <div class="conteudo-atualizar">
+        <!-- [style.display]="teste"  -->
+        <div class="div-botao-fechar">
+            <button (click)="fecharAba()">X</button>
+        </div>
+        <div class="div-formulario-atualizar">
+            <form>
+                <h2>Atualizar Dados</h2>
+                <div>
+                    <label>Nome:</label>
+                    <input name="nome" [(ngModel)]="pessoaAtt.nome" value="{{pessoaAtt.nome}}" placeholder="nome..." />
+                </div>
+                <div>
+                    <label>Idade:</label>
+                    <input name="idade" [(ngModel)]="pessoaAtt.idade" value="{{pessoaAtt.idade}}" placeholder="idade..." />
+                </div>
+                <div>
+                    <label>Cargo:</label>
+                    <input name="cargo" [(ngModel)]="pessoaAtt.cargo" value="{{pessoaAtt.cargo}}" placeholder="cargo..." />
+                </div>
+                <div>
+                    <label>Sexo:</label>
+                    <input name="sexo" [(ngModel)]="pessoaAtt.sexo" value="{{pessoaAtt.sexo}}" placeholder="sexo..." />
+                </div>
+                <div>
+                    <button (click)="atualizar()">Atualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

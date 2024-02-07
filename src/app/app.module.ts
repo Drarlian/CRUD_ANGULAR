@@ -9,6 +9,8 @@ import { CrudContentComponent } from './components/crud-content/crud-content.com
 import { UserService } from './services/user.service';
 import { TableViewerComponent } from './components/table-viewer/table-viewer.component';
 import { CookieService } from 'ngx-cookie-service';
+import { AttAreaComponent } from './components/att-area/att-area.component';
+import { GlobalService } from './services/globalContext/global.service';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,14 @@ import { CookieService } from 'ngx-cookie-service';
     MenuBarComponent,
     CrudContentComponent,
     TableViewerComponent,
+    AttAreaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [UserService, CookieService],
+  providers: [UserService, GlobalService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

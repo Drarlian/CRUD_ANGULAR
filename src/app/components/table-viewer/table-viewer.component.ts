@@ -1,5 +1,5 @@
+import { GlobalService } from './../../services/globalContext/global.service';
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/services/user.service';
 import { Pessoa } from 'src/interfaces/Pessoa';
 
@@ -11,13 +11,27 @@ import { Pessoa } from 'src/interfaces/Pessoa';
 export class TableViewerComponent implements OnInit {
   pessoas!: any;
 
-  constructor(private userService: UserService, private cookieService: CookieService) {}
+  statusDivAtualizar!: boolean;
+
+  constructor(private userService: UserService, private globalService: GlobalService) {
+    this.globalService.toggleStatus.subscribe((status) => this.statusDivAtualizar = status);
+  }
 
   ngOnInit() {
-    this.pessoas = this.userService.getPessoas();
+    this.userService.pessoaVisivel.subscribe((pessoa) => this.pessoas = pessoa);
+  }
 
-    if (this.pessoas == null){
-      this.userService.pessoaVisivel.subscribe((pessoas) => this.pessoas = pessoas);
-    }
+  deletarUsuario(id: string){
+    this.userService.deletePessoa(id)
+
+    const newPessoas = this.pessoas.filter((pessoa: Pessoa) => pessoa.id != id)
+    this.pessoas = newPessoas;
+  }
+
+  exibirDivAtualizar(pessoa: Pessoa){
+    this.globalService.alterarStatus()
+    this.globalService.toggleStatus.subscribe((status) => this.statusDivAtualizar = status)
+
+    this.globalService.alterarPessoaTemp({...pessoa})
   }
 }

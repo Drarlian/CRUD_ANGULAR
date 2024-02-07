@@ -1,26 +1,31 @@
 <div class="div-tabela">
+    <app-att-area *ngIf="statusDivAtualizar" />
     <div class="painel-tabela">
-        <h2>Usuários Cadastrados</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Idade</th>
-                    <th>Cargo</th>
-                    <th>Sexo</th>
-                    <th colspan="2">Sexo</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let pessoa of pessoas">
-                    <td>{{pessoa.nome}}</td>
-                    <td style="text-align: center;">{{pessoa.idade}}</td>
-                    <td>{{pessoa.cargo}}</td>
-                    <td style="text-align: center;">{{pessoa.sexo}}</td>
-                    <td><button>Att</button></td>
-                    <td><button>Del</button></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="titulo-tabela">
+            <h2>Usuários Cadastrados</h2>
+        </div>
+        <div class="espaco-tabela">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Idade</th>
+                        <th>Cargo</th>
+                        <th>Sexo</th>
+                        <th colspan="2">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pessoa of pessoas">
+                        <td>{{pessoa.nome}}</td>
+                        <td style="text-align: center;">{{pessoa.idade}}</td>
+                        <td>{{pessoa.cargo}}</td>
+                        <td style="text-align: center;">{{pessoa.sexo}}</td>
+                        <td><button (click)="exibirDivAtualizar(pessoa)">Att</button></td>
+                        <td><button (click)="deletarUsuario(pessoa.id)">Del</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

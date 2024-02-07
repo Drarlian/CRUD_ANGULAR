@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { Pessoa } from 'src/interfaces/Pessoa';
 
 
 @Component({
@@ -9,21 +8,20 @@ import { Pessoa } from 'src/interfaces/Pessoa';
   styleUrls: ['./crud-content.component.scss'],
 })
 export class CrudContentComponent {
-  pessoa: Pessoa = {
-    nome: '',
-    idade: '',
-    cargo: '',
-    sexo: '',
-  };
+  nome: string = '';
+  idade: string = '';
+  cargo: string = '';
+  sexo: string = '';
 
   constructor(private userService: UserService) {}
 
   cadastrar(){
-    this.userService.adicionarPessoa(this.pessoa)
 
-    this.pessoa.nome = '';
-    this.pessoa.idade = '';
-    this.pessoa.cargo = '';
-    this.pessoa.sexo = '';
+    this.userService.adicionarPessoa(this.nome, this.idade, this.cargo, this.sexo)
+
+    this.nome = '';
+    this.idade = '';
+    this.cargo = '';
+    this.sexo = '';
   }
 }

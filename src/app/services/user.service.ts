@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';  // Importando a biblioteca de Cookies
 import { BehaviorSubject } from 'rxjs';
 import { Pessoa } from 'src/interfaces/Pessoa';
 
@@ -10,7 +10,7 @@ export class UserService{
   private pessoas = new BehaviorSubject<Pessoa[]>([]);
   pessoaVisivel = this.pessoas.asObservable();
 
-  constructor(private cookieService: CookieService) {
+  constructor(private cookieService: CookieService) {  // Injetando o Cookie.
     // O código aqui dentro só vai ser executado na primeira vez que o serviço for instânciado na aplicação.
     const pessoasTemp = this.getPessoas()
 
@@ -19,7 +19,23 @@ export class UserService{
     }
   }
 
-  adicionarPessoa(pessoa: Pessoa){
+  adicionarPessoa(nome: string, idade: string, cargo: string, sexo: string){
+    let novoId;
+
+    if (this.pessoas.value.length > 0){
+      novoId = this.pessoas.value.length + 1
+    } else {
+      novoId = 1
+    }
+
+    const objetoPessoa: Pessoa = {
+      id: String(novoId),
+      nome,
+      idade,
+      cargo,
+      sexo
+    }
+
     const pessoasAtuais = this.pessoas.value;
 
     // ENTENDER AQUI EMBAIXO: SHALLOW COPY E DEEPY COPY
@@ -28,24 +44,47 @@ export class UserService{
 
     // const novaPessoa = JSON.parse(JSON.stringify(pessoa));
 
-    const novasPessoas = [...pessoasAtuais, {...pessoa}];
+    const novasPessoas = [...pessoasAtuais, {...objetoPessoa}];
 
     // ------------------------------------------------
 
     this.pessoas.next(novasPessoas);
 
-    this.cookieService.set('usuarios', `${JSON.stringify(this.pessoas.value)}`)
+		// Guardando um valor nos Cookies.
+    this.cookieService.set('usuarios', `${JSON.stringify(this.pessoas.value)}`, 7)
 
-    // this.pessoas.subscribe(val => {
-    //   console.log(val);
-    // });
+    this.pessoas.subscribe(val => {
+      console.log(val);
+    });
   }
 
   getPessoas(): Pessoa[] | null{
     try{
+			// Pegando um valor armazenado nos Cookies.
       return JSON.parse(this.cookieService.get('usuarios'))
     } catch{
       return null
     }
+  }
+
+  deletePessoa(id: string){
+    const newPessoas = this.pessoas.value.filter((pessoa) => pessoa.id != id)
+    this.pessoas.next(newPessoas)
+    this.cookieService.set('usuarios', JSON.stringify(newPessoas), 7)
+  }
+
+  atualizarPessoas(newPessoa: Pessoa){
+    
+    let pessoasTemp = [...this.pessoas.value];
+    // console.log(pessoasTemp)
+
+    pessoasTemp.forEach((pessoa, index) => {
+      if (pessoa.id == newPessoa.id){
+        pessoasTemp[index] = newPessoa
+      }
+    })
+
+    this.pessoas.next([...pessoasTemp])
+    this.cookieService.set('usuarios', JSON.stringify(this.pessoas.value), 7)
   }
 }
