@@ -22,10 +22,14 @@ export class TableViewerComponent implements OnInit {
   }
 
   deletarUsuario(id: string){
-    this.userService.deletePessoa(id)
+    const certeza = window.confirm('Tem certeza que deseja excluir o usuário?');
 
-    const newPessoas = this.pessoas.filter((pessoa: Pessoa) => pessoa.id != id)
-    this.pessoas = newPessoas;
+    if (certeza){
+      this.userService.deletePessoa(id)
+  
+      const newPessoas = this.pessoas.filter((pessoa: Pessoa) => pessoa.id != id)
+      this.pessoas = newPessoas;
+    }
   }
 
   exibirDivAtualizar(pessoa: Pessoa){
